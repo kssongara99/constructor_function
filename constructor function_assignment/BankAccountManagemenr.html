@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANK ACCOUNT MANAGEMENT</title>
+</head>
+<body>
+    <h1>BANK ACCOUNT MANAGEMENT</h1>
+</body>
+</html>
+<script>
+   function BankAccount(accountNumber,name,type,balance){
+    this.accountNumber=accountNumber;
+    this.name=name;
+    this.type=type;
+    this.balance=balance;
+    this.active=true;
+    
+    this.Deposite=function(amount){
+        if(amount>0){
+            this.balance+=amount;
+            console.log(`Deposite ${amount},new balance ${this.balance}.`);
+        }
+        else{
+            console.log(`Invalid Deposite amount.`);
+        }
+    }
+    this.Withdraw=function(amount){
+        if(this.active==true && amount>0 & this.balance>=amount){
+            this.balance-=amount;
+            console.log(`withdraw ${amount},new balance ${this.balance}.`);
+        }
+        else{
+            console.log(`Invalid Withdraw amount or Insuffecient.`);
+        }
+    }
+   }  
+   let account1 = new BankAccount(123445,"abc","savings",1400);
+   let account2 = new BankAccount(1234,"xyz","savings",1500);
+   let account3 = new BankAccount(113457,"jay","savings",1600);
+   let account4 = new BankAccount(227553,"xyz","savings",1700);
+   // account1.Deposite(200)
+   // account1.Withdraw(200)
+
+  // console.log(account1);
+
+  
+  function getTotalBalance(accounts){
+    let total=0;
+    for(let acc of accounts ){
+        if(acc.active) total+=acc.balance;
+    }
+    return total;
+  }
+  let arr =[account1,account2,account3,account4]; 
+  // account1.active=false;
+  console.log(getTotalBalance(arr));
+</script> 
